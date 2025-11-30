@@ -15,10 +15,10 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
+  #   - name: Setup Python
+  #     uses: actions/setup-python@v4
+  #     with:
+  #       python-version: '3.13'
     
     - name: Run Python action
       shell: bash
