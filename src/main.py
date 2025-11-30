@@ -26,10 +26,10 @@ def main():
         
         # 设置GitHub Action输出
         # GitHub Actions需要将输出写入到特定文件
-        output_file = os.getenv('GITHUB_OUTPUT', 'github_output.txt')
+        # output_file = os.getenv('GITHUB_OUTPUT', 'github_output.txt')
         
-        with open(output_file, 'a') as f:
-            f.write(f'result={result}\n')
+        # with open(output_file, 'a') as f:
+        #     f.write(f'result={result}\n')
         
         # 打印结果
         print(f'✅ Action completed successfully!')
