@@ -16,7 +16,7 @@ def main():
     # 执行主要逻辑
     print('🚀 Running Python custom action (Composite mode)...')
     print(f'📝 Message: {message}')
-    
+    print("11111111111111111111111111111111111111111111")
     # 处理消息
     result = f'Processed: {message}'
     print(f'📤 Result: {result}')
