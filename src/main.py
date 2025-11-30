@@ -14,7 +14,7 @@ def main():
     
     # 在Docker模式下，GitHub Actions会自动将inputs设置为环境变量
     # 格式是 INPUT_<参数名> (大写)
-    message = os.getenv('INPUT_MESSAGE') or '111111111111111111Hello from Python custom action!'
+    message = os.getenv('INPUT_MESSAGE') or 'Hello from Python custom action!'
     
     try:
         # 执行主要逻辑
