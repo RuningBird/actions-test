@@ -1,0 +1,24 @@
+name: Test Custom Action
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # 使用本地action进行测试
+      - name: Test local action
+        uses: ./
+        with:
+          message: "Hello from test workflow!"
+      
+      # 示例：如何在新workflow中使用这个action
+      - name: Example usage
+        uses: ./ 
+        with:
+          message: "Custom message for processing"

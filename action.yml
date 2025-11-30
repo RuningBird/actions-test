@@ -1,0 +1,21 @@
+name: 'My Custom Action'
+
+description: 'A custom GitHub Action for reusable workflows'
+
+inputs:
+  message:
+    description: 'The message to display'
+    required: false
+    default: 'Hello from custom action!'
+
+outputs:
+  result:
+    description: 'The result message'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'zap'
+  color: 'blue'
