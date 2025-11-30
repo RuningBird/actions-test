@@ -13,8 +13,8 @@ outputs:
     description: 'The processed message'
 
 runs:
-  using: 'python3'
-  main: 'src/main.py'
+  using: 'docker'
+  image: 'Dockerfile'
 
 branding:
   icon: 'cpu'

@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 """
 GitHub Action - Python Custom Action
-A reusable GitHub Action written in Python
+A reusable GitHub Action written in Python (Docker mode)
 """
 
 import os
 import sys
+import argparse
 from pathlib import Path
 
 def main():
     """Main function for the GitHub Action"""
     
-    # 获取输入参数
+    # 在Docker模式下，GitHub Actions会自动将inputs设置为环境变量
+    # 格式是 INPUT_<参数名> (大写)
     message = os.getenv('INPUT_MESSAGE') or 'Hello from Python custom action!'
     
     try:
         # 执行主要逻辑
-        print('🚀 Running Python custom action...')
+        print('🚀 Running Python custom action (Docker mode)...')
         print(f'📝 Message: {message}')
         
         # 处理消息
