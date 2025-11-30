@@ -1,14 +1,32 @@
-name: actions-test
-description: Demo composite action for this runner
+name: 'My Python Custom Action'
+description: 'Python composite action (cross-runner)'
 inputs:
   message:
-    description: Message to print
+    description: 'Message to process'
     required: false
-    default: "hello"
+    default: 'Hello from Python custom action!'
 runs:
-  using: composite
+  using: 'composite'
   steps:
-    - name: Print Message
-      shell: bash
+    - name: Run Python action
+      shell: sh
+      env:
+        INPUT_MESSAGE: ${{ inputs.message }}
       run: |
-        echo "From actions-test: ${INPUT_MESSAGE}"
+        # 选择动作目录：GitHub 优先，其次在 Runner 中从 /tmp 查找
+        if [ -n "${GITHUB_ACTION_PATH}" ]; then
+          ACTION_DIR="${GITHUB_ACTION_PATH}"
+        else
+          ACTION_DIR="$(dirname "$(find /tmp -type f -name 'action.yml' -o -name 'action.yaml' | head -n 1)")"
+        fi
+
+        if [ -z "${ACTION_DIR}" ] || [ ! -d "${ACTION_DIR}" ]; then
+          echo "action dir not found"; exit 1
+        fi
+
+        if ! command -v python3 >/dev/null 2>&1; then
+          echo "python3 not found"; exit 1
+        fi
+
+        cd "${ACTION_DIR}"
+        python3 src/main.py
