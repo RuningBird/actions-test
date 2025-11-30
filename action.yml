@@ -1,21 +1,14 @@
-name: 'My Python Custom Action'
-
-description: 'A custom GitHub Action written in Python for reusable workflows'
-
+name: actions-test
+description: Demo composite action for this runner
 inputs:
   message:
-    description: 'The message to process'
+    description: Message to print
     required: false
-    default: 'Hello from Python custom action!'
-
-outputs:
-  result:
-    description: 'The processed message'
-
+    default: "hello"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-
-branding:
-  icon: 'cpu'
-  color: 'green'
+  using: composite
+  steps:
+    - name: Print Message
+      shell: bash
+      run: |
+        echo "From actions-test: ${INPUT_MESSAGE}"
