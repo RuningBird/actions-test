@@ -1,12 +1,13 @@
 # My Python Custom GitHub Action
 
-一个用Python编写的可重用GitHub Action，可以在其他workflow中被调用。
+一个用Python编写的可重用GitHub Action（Composite模式），可以在其他workflow中被调用。
 
 ## 功能特性
 
-- ✅ Python实现的GitHub Action
+- ✅ Python实现的GitHub Action（Composite模式）
 - ✅ 接收自定义消息参数
 - ✅ 处理并返回处理结果
+- ✅ 无需Docker，部署更简单
 - ✅ 完整的错误处理机制
 - ✅ 易于集成到其他workflows
 
@@ -21,6 +22,13 @@
 | 参数 | 描述 |
 |------|------|
 | `result` | 处理后的结果消息 |
+
+## Composite模式优势
+
+- 🚀 **更快启动**：无需构建Docker镜像
+- 🔧 **更简单维护**：不需要Dockerfile和镜像管理
+- 💰 **更少资源**：直接运行Python脚本，资源占用更少
+- 🛠️ **更容易调试**：可以在GitHub Actions中直接查看Python输出
 
 ## 使用方法
 
@@ -111,7 +119,7 @@ python3 src/main.py
 │       └── blank.yml            # 原始workflow
 ├── src/
 │   └── main.py                  # Python Action入口文件
-├── action.yml                   # Action元数据
+├── action.yml                   # Action元数据（Composite模式）
 ├── requirements.txt             # Python依赖
 └── README.md                    # 说明文档
 ```

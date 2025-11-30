@@ -13,8 +13,21 @@ outputs:
     description: 'The processed message'
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+    
+    - name: Run Python action
+      shell: bash
+      run: |
+        cd ${{ github.action_path }}
+        python3 src/main.py
+        echo "result=$result" >> $GITHUB_OUTPUT
+      env:
+        INPUT_MESSAGE: ${{ inputs.message }}
 
 branding:
   icon: 'cpu'
