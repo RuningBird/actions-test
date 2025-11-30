@@ -1,0 +1,2 @@
+result=Processed: Hello from Python custom action!
+result=Processed: Custom test message

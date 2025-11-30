@@ -1,21 +1,21 @@
-name: 'My Custom Action'
+name: 'My Python Custom Action'
 
-description: 'A custom GitHub Action for reusable workflows'
+description: 'A custom GitHub Action written in Python for reusable workflows'
 
 inputs:
   message:
-    description: 'The message to display'
+    description: 'The message to process'
     required: false
-    default: 'Hello from custom action!'
+    default: 'Hello from Python custom action!'
 
 outputs:
   result:
-    description: 'The result message'
+    description: 'The processed message'
 
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: 'python3'
+  main: 'src/main.py'
 
 branding:
-  icon: 'zap'
-  color: 'blue'
+  icon: 'cpu'
+  color: 'green'

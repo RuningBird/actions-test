@@ -1,9 +1,10 @@
-# My Custom GitHub Action
+# My Python Custom GitHub Action
 
-一个可重用的GitHub Action，可以在其他workflow中被调用。
+一个用Python编写的可重用GitHub Action，可以在其他workflow中被调用。
 
 ## 功能特性
 
+- ✅ Python实现的GitHub Action
 - ✅ 接收自定义消息参数
 - ✅ 处理并返回处理结果
 - ✅ 完整的错误处理机制
@@ -87,22 +88,18 @@ git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
 cd YOUR_REPO_NAME
 ```
 
-### 2. 安装依赖
+### 2. 安装Python依赖 (可选)
 
 ```bash
-npm install
+# 如果需要额外的Python包
+pip install -r requirements.txt
 ```
 
-### 3. 构建action
+### 3. 测试action
 
 ```bash
-npm run build
-```
-
-### 4. 测试action
-
-```bash
-npm run test
+# 直接运行Python脚本
+python3 src/main.py
 ```
 
 ## 目录结构
@@ -113,16 +110,15 @@ npm run test
 │       ├── test-action.yml      # 测试workflow
 │       └── blank.yml            # 原始workflow
 ├── src/
-│   └── index.js                 # Action入口文件
+│   └── main.py                  # Python Action入口文件
 ├── action.yml                   # Action元数据
-├── package.json                 # Node.js依赖
-├── build.js                     # 构建脚本
+├── requirements.txt             # Python依赖
 └── README.md                    # 说明文档
 ```
 
 ## 发布版本
 
-1. 更新 `package.json` 中的版本号
+1. 更新 `action.yml` 中的版本信息 (可选)
 2. 创建Git标签: `git tag v1.0.0`
 3. 推送标签: `git push origin v1.0.0`
 
