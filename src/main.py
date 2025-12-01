@@ -16,6 +16,14 @@ def main():
     try:
         print('🚀 Running Python custom action (Composite mode)...')
         print(f'📝 Message: {message}')
+        # requests 示例：调用一个公共 API
+        try:
+            import requests
+            r = requests.get('https://httpbin.org/get', timeout=5)
+            status = r.status_code
+            print(f'🌐 requests status={status}')
+        except Exception as e:
+            print(f'⚠️ requests import/call failed: {e}')
         result = f'Processed: {message}'
         print(f'📤 Result: {result}')
         out = os.getenv('GITHUB_OUTPUT')

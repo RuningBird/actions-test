@@ -1,10 +1,4 @@
 # Python dependencies for GitHub Action
 # Add any required Python packages here
 
-# For demonstration purposes, adding some common packages
-# requests>=2.31.0
-# pyyaml>=6.0.1
-# click>=8.1.7
-
-# No external dependencies needed for this basic action
-# All standard library modules are sufficient
+requests>=2.31.0
