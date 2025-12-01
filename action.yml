@@ -16,7 +16,7 @@ runs:
         if [ -n "${GITHUB_ACTION_PATH}" ]; then
           ACTION_DIR="${GITHUB_ACTION_PATH}"
         else
-          ACTION_DIR="$(dirname "$(find /tmp/actions/_cache/RuningBird/actions-test -type f -name 'action.yml' -o -name 'action.yaml' | head -n 1)")"
+          ACTION_DIR="$(dirname "$(find /tmp -type f -name 'action.yml' -o -name 'action.yaml' | head -n 1)")"
         fi
         if ! command -v python3 >/dev/null 2>&1; then
           echo "python3 not found"; exit 1
