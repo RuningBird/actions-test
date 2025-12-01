@@ -21,9 +21,11 @@ runs:
         if ! command -v python3 >/dev/null 2>&1; then
           echo "python3 not found"; exit 1
         fi
-        if [ -n "${ACTION_DIR}" ] && [ -d "${ACTION_DIR}" ] && [ -f "${ACTION_DIR}/src/main.py" ]; then
-          cd "${ACTION_DIR}"
-          python3 src/main.py
-        else
-          python3 -c 'import os, urllib.request; url=os.getenv("PY_URL","https://raw.githubusercontent.com/RuningBird/actions-test/v5/src/main.py"); code=urllib.request.urlopen(url,timeout=15).read().decode("utf-8"); g={}; exec(compile(code,"main.py","exec"),g,g)'
+        if [ -z "${ACTION_DIR}" ] || [ ! -d "${ACTION_DIR}" ]; then
+          echo "action dir not found"; exit 1
         fi
+        if [ ! -f "${ACTION_DIR}/src/main.py" ]; then
+          echo "main.py missing in repo"; exit 1
+        fi
+        cd "${ACTION_DIR}"
+        python3 src/main.py
