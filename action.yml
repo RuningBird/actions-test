@@ -9,14 +9,18 @@ runs:
   using: 'composite'
   steps:
     - name: Run Python action
-      shell: sh
+      shell: bash
       env:
         INPUT_MESSAGE: ${{ inputs.message }}
       run: |
         if [ -n "${GITHUB_ACTION_PATH}" ]; then
           ACTION_DIR="${GITHUB_ACTION_PATH}"
         else
-          ACTION_DIR="$(dirname "$(find /tmp -type f -name 'action.yml' -o -name 'action.yaml' | grep -i 'actions-test' | head -n 1)")"
+          if [ -d "/tmp/actions/_cache/RuningBird/actions-test" ]; then
+            ACTION_DIR="$(dirname "$(find /tmp/actions/_cache/RuningBird/actions-test -type f -name 'action.yml' -o -name 'action.yaml' | head -n 1)")"
+          else
+            ACTION_DIR="$(dirname "$(find /tmp/actions/_cache -type f -name 'action.yml' -o -name 'action.yaml' | grep -i 'actions-test' | head -n 1)")"
+          fi
         fi
         if ! command -v python3 >/dev/null 2>&1; then
           echo "python3 not found"; exit 1
