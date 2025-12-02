@@ -12,7 +12,7 @@ import argparse
 from pathlib import Path
 
 def main():
-    message = os.getenv('INPUT_MESSAGE') or 'Hello from Python custom action!'
+    message = os.getenv('MESSAGE') or 'Hello from Python custom action!'
     try:
         print('🚀 Running Python custom action (Composite mode)...')
         print(f'📝 Message: {message}')
